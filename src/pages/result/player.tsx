@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import BlackLayout from '../../../components/layout/black/BlackLayout';
-import ResultButton from '../../../components/button/ResultButton';
-import Profile from '../../../components/PlayerInfo/Profile';
-import StatTable from '../../../components/PlayerInfo/StatTable';
-import { breakpoints } from '../../../styles/media';
+import BlackLayout from '@layout/black/BlackLayout';
+import ResultButton from '@button/ResultButton';
+import Profile from '@PlayerInfo/Profile';
+import StatTable from '@PlayerInfo/StatTable';
+import { breakpoints } from '@styles/media';
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,6 +23,10 @@ const TopContentsContainer = styled.div`
     margin-top: 6.48vh;
     height: 20.28vh;
   }
+  ${breakpoints.small} {
+    margin-top: 5vh;
+    height: 10vh;
+  }
 `;
 
 const BottomContentsContainer = styled.div`
@@ -36,8 +40,6 @@ const BottomContentsContainer = styled.div`
   );
   ${breakpoints.large} {
     margin-top: 1.57vh;
-    /* padding-right: 3.33vw;
-    padding-left: 3.33vw; */
     height: 54.54vh;
   }
   ${breakpoints.medium} {
@@ -45,6 +47,10 @@ const BottomContentsContainer = styled.div`
     padding-right: 3.33vw;
     padding-left: 3.33vw;
     height: 50.54vh;
+  }
+  ${breakpoints.small} {
+    margin-top: 2vh;
+    height: 50vh;
   }
 `;
 

@@ -1,10 +1,9 @@
-import PlayerBackCard from './PlayerBackCard';
-import PlayerFrontCard from './PlayerFrontCard';
+import PlayerBackCard from '@PlayerCard/PlayerBackCard';
+import PlayerFrontCard from '@PlayerCard/PlayerFrontCard';
 import styled from 'styled-components';
-import { breakpoints } from '../../styles/media';
-import { Large, Medium, Small } from '../../styles/MediaQuery';
+import { breakpoints } from '@styles/media';
+import { Large, Medium, Small } from '@styles/MediaQuery';
 import Link from 'next/link';
-import { IPlayer } from '../../store/Types';
 
 const Card = styled.div`
   position: relative;
@@ -24,18 +23,25 @@ const Card = styled.div`
   }
 `;
 
-export default function PlayerCard({ name }: IPlayer) {
+interface IPlayerCard {
+  name: string;
+  position: string;
+  birth: string;
+  team: string;
+}
+
+export default function PlayerCard(playerCard: IPlayerCard) {
   return (
     <Link
       href={{
-        pathname: 'custom/result/[player]',
-        query: { player: name },
+        pathname: '/result/[player]',
+        query: { player: playerCard.name },
       }}
     >
       <>
         <Large>
           <Card>
-            <PlayerFrontCard />
+            <PlayerFrontCard {...playerCard} />
             <PlayerBackCard />
           </Card>
         </Large>

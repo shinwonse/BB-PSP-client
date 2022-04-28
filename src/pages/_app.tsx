@@ -1,15 +1,16 @@
+import GlobalStyle from '@styles/GlobalStyle';
+import type { AppProps } from 'next/app';
+import Head from 'next/head';
 import React from 'react';
-import initMockAPI from '../mocks';
-import GlobalStyle from '../styles/GlobalStyle';
 import { Hydrate, QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { RecoilRoot } from 'recoil';
-import type { AppProps } from 'next/app';
-import Head from 'next/head';
 
-if (process.env.NODE_ENV === 'development') {
-  initMockAPI();
-}
+import initMockAPI from '../mocks';
+
+// if (process.env.NODE_ENV === 'development') {
+//   initMockAPI();
+// }
 
 type ComponentWithPageLayout = AppProps & {
   Component: AppProps['Component'] & {
@@ -23,9 +24,12 @@ function App({ Component, pageProps }: ComponentWithPageLayout) {
     <QueryClientProvider client={queryClient}>
       <RecoilRoot>
         <Head>
-          <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width" />
-          <meta name="description" content="BB-PSP" />
+          <meta charSet="UTF-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          />
+          <meta httpEquiv="X-UA-Compatible" content="ie=edge" />
           <title>BB-PSP</title>
         </Head>
         <Hydrate state={pageProps.dehydratedState}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { breakpoints } from '../../../styles/media';
-import BlackHeader from './BlackHeader';
+import { breakpoints } from '@styles/media';
+import BlackHeader from '@layout/black/BlackHeader';
 
 const Container = styled.div`
   background-color: #3d3d3d;
@@ -21,6 +21,9 @@ const Container = styled.div`
   ${breakpoints.small} {
     height: 100vh;
     background-size: 40vh auto;
+  }
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
   }
 `;
 

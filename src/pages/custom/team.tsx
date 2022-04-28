@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 import styled from 'styled-components';
-import CommonLayout from '../../components/layout/common/CommonLayout';
-import PageButton from '../../components/button/PageButton';
-import { selectedTeamState } from '../../store/Data/atom';
-import { ITeam } from '../../store/Types';
-import { breakpoints } from '../../styles/media';
-import team from '../../data/team.json';
+import CommonLayout from '@layout/common/CommonLayout';
+import PageButton from '@button/PageButton';
+import { selectedTeamState } from '@store/Data/atom';
+import { ITeam } from '@store/Types';
+import { breakpoints } from '@styles/media';
+import team from '@data/team.json';
 import { GetStaticProps, InferGetStaticPropsType } from 'next/types';
 
 const Wrapper = styled.div`
@@ -96,9 +96,6 @@ function Team({
     imagePreload(color);
   }, []);
   function imagePreload(urls: string[]) {
-    // const preloadedCorlorImages = urls.map((url) => {
-    //   return (new Image().src = url);
-    // });
     urls.map((url) => {
       new Image().src = url;
     });

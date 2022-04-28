@@ -1,10 +1,10 @@
-import styled from 'styled-components';
-import TeamSlider from '../../components/kbo/TeamSlider';
+import { fetchTeams, useTeams } from '@hooks/api/useTeams';
+import TeamSlider from '@kbo/TeamSlider';
+import CommonLayout from '@layout/common/CommonLayout';
+import { breakpoints } from '@styles/media';
 import { GetStaticProps } from 'next';
 import { dehydrate, QueryClient } from 'react-query';
-import { fetchTeams, useTeams } from '../../hooks/api/useTeams';
-import CommonLayout from '../../components/layout/common/CommonLayout';
-import { breakpoints } from '../../styles/media';
+import styled from 'styled-components';
 
 const Wrapper = styled.main`
   display: flex;
@@ -22,6 +22,9 @@ const Slider = styled.div`
   ${breakpoints.medium} {
     margin-top: 10vh;
     width: 77vw;
+  }
+  ${breakpoints.small} {
+    width: 70vw;
   }
 `;
 

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../styles/media';
-import PlayerCard from '../PlayerCard/PlayerCard';
+import { breakpoints } from '@styles/media';
+import PlayerCard from '@PlayerCard/PlayerCard';
 
 const Container = styled.div`
   position: absolute;
@@ -22,6 +22,10 @@ const CloseButton = styled.img`
     height: auto;
   }
   ${breakpoints.medium} {
+    width: 6vw;
+    height: auto;
+  }
+  ${breakpoints.small} {
     width: 6vw;
     height: auto;
   }
@@ -58,6 +62,10 @@ const ModalBlock = styled.div`
     width: 50vw;
     height: 70vh;
   }
+  ${breakpoints.small} {
+    width: 70vw;
+    height: 70vh;
+  }
 `;
 
 const Contents = styled.div`
@@ -68,6 +76,9 @@ const Contents = styled.div`
     padding-top: 4.9vh;
   }
   ${breakpoints.medium} {
+    padding-top: 3vh;
+  }
+  ${breakpoints.small} {
     padding-top: 3vh;
   }
 `;
@@ -81,6 +92,11 @@ const Title = styled.h2`
     padding-bottom: 5.28vh;
   }
   ${breakpoints.medium} {
+    font-size: 2vw;
+    line-height: 3vh;
+    padding-bottom: 3vh;
+  }
+  ${breakpoints.small} {
     font-size: 2vw;
     line-height: 3vh;
     padding-bottom: 3vh;

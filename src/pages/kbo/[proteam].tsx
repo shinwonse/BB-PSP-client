@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import CommonLayout from '../../components/layout/common/CommonLayout';
-import { breakpoints } from '../../styles/media';
-import PlayerCard from '../../components/PlayerCard/PlayerCard';
+import CommonLayout from '@layout/common/CommonLayout';
+import { breakpoints } from '@styles/media';
+import PlayerCard from '@PlayerCard/PlayerCard';
 import { useRouter } from 'next/router';
 
 const Wrapper = styled.div`
@@ -62,23 +62,7 @@ function Team() {
     <Wrapper>
       <Container>
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map((i) => {
-          return (
-            <PlayerCard
-              key={i}
-              age={0}
-              backNumber={0}
-              batInfo={''}
-              pitchInfo={''}
-              birth={''}
-              height={''}
-              weight={''}
-              highSchool={''}
-              position={''}
-              salary={''}
-              name={''}
-              team={''}
-            />
-          );
+          return <PlayerCard key={i} name={'홍창기'} />;
         })}
       </Container>
     </Wrapper>

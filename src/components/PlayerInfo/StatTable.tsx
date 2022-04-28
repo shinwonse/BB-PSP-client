@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakpoints } from '../../styles/media';
+import { breakpoints } from '@styles/media';
 
 const Wrapper = styled.div`
   padding-right: 3.33vw;
@@ -19,6 +19,11 @@ const Season = styled.h3`
     line-height: 3vh;
     padding-top: 4vh;
   }
+  ${breakpoints.small} {
+    font-size: 2vw;
+    line-height: 3vh;
+    padding-top: 4vh;
+  }
 `;
 
 const Table = styled.table`
@@ -29,6 +34,11 @@ const Table = styled.table`
   }
   ${breakpoints.medium} {
     width: 81vw;
+    margin-top: 3.52vh;
+    margin-bottom: 5.1vh;
+  }
+  ${breakpoints.small} {
+    width: 80vw;
     margin-top: 3.52vh;
     margin-bottom: 5.1vh;
   }
@@ -56,6 +66,12 @@ const StatTh = styled.th`
     width: 7vw;
     padding-bottom: 0.7rem;
   }
+  ${breakpoints.small} {
+    font-size: 2vw;
+    line-height: 3vh;
+    width: 7vw;
+    padding-bottom: 0.7rem;
+  }
 `;
 
 const StatTd = styled.td`
@@ -69,6 +85,12 @@ const StatTd = styled.td`
     padding-top: 2.13vh;
   }
   ${breakpoints.medium} {
+    font-size: 2vw;
+    line-height: 3vh;
+    width: 7vw;
+    padding-top: 2.13vh;
+  }
+  ${breakpoints.small} {
     font-size: 2vw;
     line-height: 3vh;
     width: 7vw;
