@@ -1,13 +1,11 @@
-import TeamCard from '@kbo/TeamCard';
 import { breakpoints } from '@styles/media';
-import React from 'react';
 import styled from 'styled-components';
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   width: 100%;
 `;
 
-const TeamSliderContainer = styled.div`
+export const TeamSliderContainer = styled.div`
   position: relative;
   align-items: center;
   overflow-y: hidden;
@@ -16,7 +14,7 @@ const TeamSliderContainer = styled.div`
     height: 71.39vh;
     width: 100%;
     white-space: nowrap;
-    padding-bottom: 5rem;
+    /* padding-bottom: 5rem; */
     &::-webkit-scrollbar {
       background: transparent;
       height: 0.5rem;
@@ -33,51 +31,26 @@ const TeamSliderContainer = styled.div`
     }
   }
   ${breakpoints.medium} {
-    height: 60vh;
+    height: 100%;
     width: 100%;
   }
   ${breakpoints.small} {
+    margin-top: 5vh;
     height: 60vh;
     width: 100%;
   }
 `;
 
-const Row = styled.div`
+export const Row = styled.div`
   display: flex;
   flex-direction: row;
   width: 200%;
   height: 100%;
   ${breakpoints.medium} {
     width: 500%;
+    height: 100%;
   }
   ${breakpoints.small} {
     width: 1000%;
   }
 `;
-
-export interface TeamSliderProps {
-  name: string;
-  colourLogo: string;
-  blackLogo: string;
-  teamColour: string;
-  foundedAt: number;
-  champCount: number;
-  lastSeason: number;
-}
-
-const TeamSlider = (teams: TeamSliderProps) => {
-  const teamArr = Object.values(teams);
-  return (
-    <Wrapper>
-      <TeamSliderContainer>
-        <Row>
-          {teamArr.map((team) => {
-            return <TeamCard key={team.name} {...team} />;
-          })}
-        </Row>
-      </TeamSliderContainer>
-    </Wrapper>
-  );
-};
-
-export default TeamSlider;
