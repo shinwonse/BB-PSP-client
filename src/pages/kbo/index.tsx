@@ -1,3 +1,4 @@
+import styled from '@emotion/styled';
 import { fetchTeams, useTeams } from '@hooks/api/useTeams';
 import TeamSlider from '@kbo/TeamSlider';
 import CommonLayout from '@layout/common/CommonLayout';
@@ -6,7 +7,6 @@ import { breakpoints } from '@styles/media';
 import { GetStaticProps } from 'next';
 import { useEffect } from 'react';
 import { dehydrate, QueryClient } from 'react-query';
-import styled from 'styled-components';
 
 const Wrapper = styled.main`
   display: flex;
@@ -36,7 +36,9 @@ function imagePreload(urls: string[]) {
 }
 
 const Kbo = () => {
-  const { data } = useTeams(2021);
+  const { isLoading, error, data } = useTeams(2021);
+  if (isLoading) return <div>Loading...</div>;
+  if (error) console.error(error);
   const teams = data?.teamDTOList;
   const color = teams.map((team: ITeam) => team.colourLogo);
   useEffect(() => {

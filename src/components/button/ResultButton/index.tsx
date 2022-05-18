@@ -1,5 +1,6 @@
 import ModalFrame from '@modal/ModalFrame';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 
 import {
@@ -11,27 +12,37 @@ import {
   Wrapper,
 } from './styles';
 
-const ResultButton = () => {
+interface IResultButtonProps {
+  name: string;
+  birth: string;
+}
+
+const ResultButton = ({ name, birth }: IResultButtonProps) => {
+  console.log(name, birth);
   const [showModal, setShowModal] = useState(false);
   const openModal = () => {
     setShowModal(true);
   };
+  const router = useRouter();
   return (
     <Wrapper>
-      <Link href="/">
-        <Button style={{ textAlign: 'right' }}>
-          prev
-          <ArrowImg
-            src="/image/white_arrow_reverse.png"
-            alt="이전 페이지 버튼"
-          />
-        </Button>
-      </Link>
+      <Button onClick={() => router.back()} style={{ textAlign: 'right' }}>
+        prev
+        <ArrowImg src="/image/white_arrow_reverse.png" alt="이전 페이지 버튼" />
+      </Button>
       <ReplacementPlayerButton onClick={openModal}>
         replacement player
       </ReplacementPlayerButton>
       {showModal ? <ModalFrame setShowModal={setShowModal} /> : null}
-      <Link href="/custom/result/player/threeyear">
+      <Link
+        href={{
+          pathname: '/result/batter/[player]/[birth]/threeyear',
+          query: {
+            player: name,
+            birth: birth,
+          },
+        }}
+      >
         <Button style={{ textAlign: 'left', width: '2.76vw' }}>
           <ViewAllBox>
             view all
