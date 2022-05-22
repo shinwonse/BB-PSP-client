@@ -1,8 +1,12 @@
 import PrevButton from '@button/PrevButton';
 import styled from '@emotion/styled';
+import { fetchPitcher, usePitcher } from '@hooks/api/usePitcher';
 import BlackFullLayout from '@layout/black/BlackFullLayout';
-import StatTable from '@PlayerInfo/StatTable';
+import PitcherTable from '@PlayerInfo/StatTable/PitcherTable';
 import { breakpoints } from '@styles/media';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
+import { dehydrate, QueryClient } from 'react-query';
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +25,7 @@ const ContentsContainer = styled.div`
     rgba(39, 39, 39, 0) 100%
   );
   ${breakpoints.large} {
-    margin-top: 22.69vh;
+    margin-top: 20vh;
   }
   ${breakpoints.medium} {
     margin-top: 10vh;
@@ -72,14 +76,21 @@ const PlayerName = styled.h1`
 `;
 
 const Threeyear = () => {
+  const router = useRouter();
+  const name = router.query?.player as string;
+  const birth = router.query?.birth as string;
+  const { isLoading, error, data } = usePitcher(2021, name, birth);
+  if (isLoading) return <div>Loading...</div>;
+  if (error) console.error(error);
+  const pitcher_stat = data?.pitcher_stat;
   return (
     <Wrapper>
       <PlayerName>Jung-hoo Lee #07</PlayerName>
       <ContentsContainer>
         <StatContainer>
-          <StatTable />
-          <StatTable />
-          <StatTable />
+          <PitcherTable {...pitcher_stat} />
+          <PitcherTable {...pitcher_stat} />
+          <PitcherTable {...pitcher_stat} />
         </StatContainer>
         <ButtonContainer>
           <PrevButton />
@@ -87,6 +98,29 @@ const Threeyear = () => {
       </ContentsContainer>
     </Wrapper>
   );
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const name = context.params?.player as string;
+  const birth = context.params?.birth as string;
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery('pitcher', () =>
+    fetchPitcher(2021, name, birth),
+  );
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: true,
+  };
 };
 
 Threeyear.PageLayout = BlackFullLayout;

@@ -1,4 +1,5 @@
 export interface IPosition {
+  data: string;
   name: string;
   colourLogo: string;
   blackLogo: string;
@@ -86,6 +87,32 @@ export interface IBatterProps {
     position: string;
     team: string;
   };
+}
+
+export interface IBatterStatProps {
+  _AVG: number;
+  _BB: number;
+  _G: number;
+  _H: number;
+  _HR: number;
+  _AB: number;
+  _OBP: number;
+  _PA: number;
+  _R: number;
+  _RBI: number;
+  _SLG: number;
+}
+
+export interface IPitcherStatProps {
+  _G: number;
+  _IP: number;
+  _W: number;
+  _L: number;
+  _ERA: number;
+  _SO: number;
+  _HLD: number;
+  _SV: number;
+  _WHIP: number;
 }
 
 export interface IPlayer {

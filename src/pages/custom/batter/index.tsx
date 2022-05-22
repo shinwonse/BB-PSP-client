@@ -57,26 +57,10 @@ const Container = styled.div`
   }
 `;
 
-const Team = () => {
-  const router = useRouter();
-  const position = router.query?.position as string;
-  const proteam = router.query?.proteam as string;
-  const { isLoading, error, data } = usePlayers(position, 2021, proteam);
-  if (isLoading) return <div>Loading...</div>;
-  if (error) console.error(error);
+const Batter = () => {
   return (
     <Wrapper>
-      <Container>
-        {position === 'batters'
-          ? data.map((player: IBatterProps) => {
-              return <BatterCard key={player?.player_info?.name} {...player} />;
-            })
-          : data.map((player: IPitcherProps) => {
-              return (
-                <PitcherCard key={player?.player_info?.name} {...player} />
-              );
-            })}
-      </Container>
+      <Container>pitcher</Container>
     </Wrapper>
   );
 };
@@ -97,13 +81,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: true,
-  };
-};
+Batter.PageLayout = CommonLayout;
 
-Team.PageLayout = CommonLayout;
-
-export default Team;
+export default Batter;

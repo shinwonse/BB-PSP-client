@@ -1,8 +1,12 @@
 import PrevButton from '@button/PrevButton';
 import styled from '@emotion/styled';
+import { fetchBatter, useBatter } from '@hooks/api/useBatter';
 import BlackFullLayout from '@layout/black/BlackFullLayout';
-import StatTable from '@PlayerInfo/StatTable';
+import BatterTable from '@PlayerInfo/StatTable/BatterTable';
 import { breakpoints } from '@styles/media';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
+import { dehydrate, QueryClient } from 'react-query';
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +25,7 @@ const ContentsContainer = styled.div`
     rgba(39, 39, 39, 0) 100%
   );
   ${breakpoints.large} {
-    margin-top: 22.69vh;
+    margin-top: 10vh;
   }
   ${breakpoints.medium} {
     margin-top: 10vh;
@@ -53,33 +57,21 @@ const ButtonContainer = styled.div`
   }
 `;
 
-const PlayerName = styled.h1`
-  position: absolute;
-  font-family: 'RobotoBoldItalic';
-  color: #fff;
-  ${breakpoints.large} {
-    font-size: 5.21vw;
-    margin-top: 14.07vh;
-  }
-  ${breakpoints.medium} {
-    font-size: 6vw;
-    margin-top: 6vh;
-  }
-  ${breakpoints.small} {
-    font-size: 6vw;
-    margin-top: 2vh;
-  }
-`;
-
 const Threeyear = () => {
+  const router = useRouter();
+  const name = router.query?.player as string;
+  const birth = router.query?.birth as string;
+  const { isLoading, error, data } = useBatter(2021, name, birth);
+  if (isLoading) return <div>Loading...</div>;
+  if (error) console.error(error);
+  const batter_stat = data?.batter_stat;
   return (
     <Wrapper>
-      {/* <PlayerName>이정후 #07</PlayerName> */}
       <ContentsContainer>
         <StatContainer>
-          <StatTable />
-          <StatTable />
-          <StatTable />
+          <BatterTable {...batter_stat} />
+          <BatterTable {...batter_stat} />
+          <BatterTable {...batter_stat} />
         </StatContainer>
         <ButtonContainer>
           <PrevButton />
@@ -87,6 +79,29 @@ const Threeyear = () => {
       </ContentsContainer>
     </Wrapper>
   );
+};
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  const name = context.params?.player as string;
+  const birth = context.params?.birth as string;
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery('batter', () =>
+    fetchBatter(2021, name, birth),
+  );
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: true,
+  };
 };
 
 Threeyear.PageLayout = BlackFullLayout;

@@ -41,20 +41,30 @@ export const CardWrapper = styled.div`
   }
 `;
 
+const imagePreload = (urls: string[]) => {
+  urls.map((url) => {
+    new Image().src = url;
+  });
+};
+
 const Batter = ({
   batterPositionList,
 }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const colorImages = batterPositionList.map(
+    (position: IPosition) => position.colourLogo,
+  );
   const [selectedPosition, setSelectedPosition] = useRecoilState<string[]>(
     selectedPositionState,
   );
   useEffect(() => {
+    imagePreload(colorImages);
     setSelectedPosition([]);
   }, []);
   return (
     <Wrapper>
       <CardWrapper>
         {batterPositionList.map((batterPosition: IPosition) => {
-          const isclicked = selectedPosition.includes(batterPosition.name);
+          const isclicked = selectedPosition.includes(batterPosition.data);
           return (
             <div key={batterPosition?.name}>
               <PositionCard position={batterPosition} isclicked={isclicked} />
@@ -62,7 +72,11 @@ const Batter = ({
           );
         })}
       </CardWrapper>
-      <PageButton prev="/custom/position" next="/custom/range" />
+      {selectedPosition.length > 0 ? (
+        <PageButton prev="/custom/position" next="/custom/range" />
+      ) : (
+        <PageButton prev="/custom/position" next="" />
+      )}
     </Wrapper>
   );
 };

@@ -19,8 +19,29 @@ export interface StyledProps {
   team: string;
 }
 
-const Profile = (player: any) => {
-  const team = player?.team;
+interface IProfileProps {
+  name: string;
+  backNumber: number;
+  team: string;
+  batInfo: string;
+  pitchInfo: string;
+  height: number;
+  weight: number;
+  school: string;
+  birth: string;
+  salary: number;
+}
+
+const Profile = (player: IProfileProps) => {
+  const pay =
+    player?.salary.toString().length < 5
+      ? player?.salary + '만원'
+      : player?.salary % 10000 === 0
+      ? Math.floor(player?.salary / 10000) + '억원'
+      : Math.floor(player?.salary / 10000) +
+        '억 ' +
+        (player?.salary % 10000) +
+        '만원';
   return (
     <>
       <NameBox>
@@ -29,7 +50,7 @@ const Profile = (player: any) => {
       </NameBox>
       <LogoBox>
         <TopLine />
-        <Logo team={team} />
+        <Logo team={player?.team} />
         <BottomLine />
       </LogoBox>
       <ProfileContainer>
@@ -51,54 +72,24 @@ const Profile = (player: any) => {
             </ContentsBox>
           </ProfileBox>
         </Large>
-        <Medium>
-          <ProfileBox>
-            <ContentsBox>
-              <ContentsTitle>B/T:</ContentsTitle>
-              <Contents>L/R</Contents>
-            </ContentsBox>
-            <ContentsBox>
-              <ContentsTitle>HEIGHT:</ContentsTitle>
-              <Contents>185CM</Contents>
-            </ContentsBox>
-            <ContentsBox>
-              <ContentsTitle>WEIGHT:</ContentsTitle>
-              <Contents>80KG</Contents>
-            </ContentsBox>
-          </ProfileBox>
-        </Medium>
-        <Small>
-          <ProfileBox>
-            <ContentsBox>
-              <ContentsTitle>B/T:</ContentsTitle>
-              <Contents>L/R</Contents>
-            </ContentsBox>
-          </ProfileBox>
-          <ProfileBox>
-            <ContentsBox>
-              <ContentsTitle>HEIGHT:</ContentsTitle>
-              <Contents>185CM</Contents>
-            </ContentsBox>
-            <ContentsBox>
-              <ContentsTitle>WEIGHT:</ContentsTitle>
-              <Contents>80KG</Contents>
-            </ContentsBox>
-          </ProfileBox>
-        </Small>
+        <Medium />
+        <Small />
         <ProfileBox>
           <ContentsBox>
             <ContentsTitle>BIRTH:</ContentsTitle>
             <Contents>{player.birth}</Contents>
           </ContentsBox>
+        </ProfileBox>
+        <ProfileBox>
           <ContentsBox>
-            <ContentsTitle>SCHOOL:</ContentsTitle>
+            <ContentsTitle>CAREER:</ContentsTitle>
             <Contents>{player.school}</Contents>
           </ContentsBox>
         </ProfileBox>
         <ProfileBox>
           <ContentsBox>
-            <ContentsTitle>SALARY(2022):</ContentsTitle>
-            <Contents>750MILLION KRW</Contents>
+            <ContentsTitle>SALARY(2021): </ContentsTitle>
+            <Contents>{pay}</Contents>
           </ContentsBox>
         </ProfileBox>
       </ProfileContainer>

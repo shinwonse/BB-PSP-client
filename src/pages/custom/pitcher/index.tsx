@@ -1,13 +1,20 @@
 import styled from '@emotion/styled';
+import { useCustomPitcher } from '@hooks/api/useCustomPitcher';
 import { fetchPlayers, usePlayers } from '@hooks/api/usePlayers';
 import CommonLayout from '@layout/common/CommonLayout';
 import BatterCard from '@PlayerCard/BatterCard';
 import PitcherCard from '@PlayerCard/PitcherCard';
+import {
+  ageRangeState,
+  selectedPositionState,
+  selectedTeamState,
+} from '@store/Data/atom';
 import { IBatterProps, IPitcherProps } from '@store/Types';
 import { breakpoints } from '@styles/media';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import { dehydrate, QueryClient } from 'react-query';
+import { useRecoilValue } from 'recoil';
 
 const Wrapper = styled.div`
   display: flex;
@@ -57,53 +64,32 @@ const Container = styled.div`
   }
 `;
 
-const Team = () => {
-  const router = useRouter();
-  const position = router.query?.position as string;
-  const proteam = router.query?.proteam as string;
-  const { isLoading, error, data } = usePlayers(position, 2021, proteam);
-  if (isLoading) return <div>Loading...</div>;
-  if (error) console.error(error);
+const Pitcher = () => {
+  const team = useRecoilValue(selectedTeamState);
+  const position = useRecoilValue(selectedPositionState);
+  const age = useRecoilValue(ageRangeState);
+  console.log(team, position, age);
+  const { data, isSuccess, isError } = useCustomPitcher(
+    2021,
+    age[1],
+    age[0],
+    position,
+    team,
+  );
+  console.log(isSuccess);
   return (
     <Wrapper>
-      <Container>
-        {position === 'batters'
-          ? data.map((player: IBatterProps) => {
-              return <BatterCard key={player?.player_info?.name} {...player} />;
-            })
-          : data.map((player: IPitcherProps) => {
-              return (
-                <PitcherCard key={player?.player_info?.name} {...player} />
-              );
-            })}
-      </Container>
+      <Container>pitcher</Container>
     </Wrapper>
   );
 };
 
-export const getStaticProps: GetStaticProps = async (context) => {
-  const proteam = context.params?.proteam as string;
-  const position = context.params?.position as string;
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery('playerData', () =>
-    fetchPlayers(position, 2021, proteam),
-  );
-
+export const getStaticProps: GetStaticProps = async () => {
   return {
-    props: {
-      dehydratedState: dehydrate(queryClient),
-    },
+    props: {},
   };
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  return {
-    paths: [],
-    fallback: true,
-  };
-};
+Pitcher.PageLayout = CommonLayout;
 
-Team.PageLayout = CommonLayout;
-
-export default Team;
+export default Pitcher;
