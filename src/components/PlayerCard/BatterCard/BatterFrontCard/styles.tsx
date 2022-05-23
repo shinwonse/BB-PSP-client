@@ -20,6 +20,10 @@ export const Wrapper = styled.div`
     width: 25vw;
     height: 10vh;
   }
+  ${breakpoints.small} {
+    width: 30vw;
+    height: 8vh;
+  }
 `;
 
 export const ContentsBox = styled.div`
@@ -35,7 +39,6 @@ export const LeftBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start;
   border-right: 1px solid #fff;
   ${breakpoints.large} {
     width: 8.28vw;
@@ -47,6 +50,13 @@ export const LeftBox = styled.div`
     width: 15vw;
     padding-left: 2vw;
   }
+  ${breakpoints.small} {
+    width: 18vw;
+    height: 6vh;
+    padding-left: 2.5vw;
+    margin-top: 1.2vh;
+    border-right: 0.7px solid #fff;
+  }
 `;
 
 export const Name = styled.h3`
@@ -54,15 +64,23 @@ export const Name = styled.h3`
   font-size: 0.73vw;
   line-height: 1.71vh;
   color: #fff;
+  text-align: start;
   ${breakpoints.medium} {
     font-size: 1.5vw;
     line-height: 2vh;
+  }
+  ${breakpoints.small} {
+    font-size: 1.8vw;
+    line-height: 2.2vh;
   }
 `;
 
 export const LittleBox = styled.div`
   display: flex;
   flex-direction: row;
+  ${breakpoints.large} {
+    padding-top: 0.5vh;
+  }
 `;
 
 export const Position = styled.h3`
@@ -75,6 +93,10 @@ export const Position = styled.h3`
     font-size: 1.5vw;
     line-height: 2vh;
   }
+  ${breakpoints.small} {
+    font-size: 1.8vw;
+    line-height: 2.2vh;
+  }
 `;
 
 export const Birthday = styled.h3`
@@ -85,6 +107,10 @@ export const Birthday = styled.h3`
   ${breakpoints.medium} {
     font-size: 1.5vw;
     line-height: 2vh;
+  }
+  ${breakpoints.small} {
+    font-size: 1.8vw;
+    line-height: 2.2vh;
   }
 `;
 
@@ -98,5 +124,9 @@ export const RightBox = styled.div<StyledProps>`
   ${breakpoints.medium} {
     width: 10vw;
     background-size: auto 4vh;
+  }
+  ${breakpoints.small} {
+    width: 12vw;
+    background-size: auto 3.5vh;
   }
 `;

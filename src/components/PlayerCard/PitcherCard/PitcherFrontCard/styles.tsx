@@ -6,8 +6,6 @@ import { StyledProps } from '.';
 export const Wrapper = styled.div`
   position: absolute;
   z-index: 1;
-  backface-visibility: hidden;
-  transform: rotateY(0deg);
   display: flex;
   flex-direction: row;
   border-radius: 0.4rem;
@@ -15,6 +13,16 @@ export const Wrapper = styled.div`
   ${breakpoints.large} {
     width: 15.1vw;
     height: 15vh;
+    backface-visibility: hidden;
+    transform: rotateY(0deg);
+  }
+  ${breakpoints.medium} {
+    width: 25vw;
+    height: 10vh;
+  }
+  ${breakpoints.small} {
+    width: 30vw;
+    height: 8vh;
   }
 `;
 
@@ -39,10 +47,17 @@ export const LeftBox = styled.div`
     padding-left: 1.51vw;
   }
   ${breakpoints.medium} {
-    width: 15.9rem;
-    height: 9rem;
-    margin-top: 3.6rem;
-    padding-left: 2.9rem;
+    width: 15vw;
+    height: 7vh;
+    padding-left: 2vw;
+    margin-top: 1.5vh;
+  }
+  ${breakpoints.small} {
+    width: 18vw;
+    height: 6vh;
+    padding-left: 2.5vw;
+    margin-top: 1.2vh;
+    border-right: 0.7px solid #fff;
   }
 `;
 
@@ -51,11 +66,23 @@ export const Name = styled.h3`
   font-size: 0.73vw;
   line-height: 1.71vh;
   color: #fff;
+  text-align: start;
+  ${breakpoints.medium} {
+    font-size: 1.5vw;
+    line-height: 2vh;
+  }
+  ${breakpoints.small} {
+    font-size: 1.8vw;
+    line-height: 2.2vh;
+  }
 `;
 
 export const LittleBox = styled.div`
   display: flex;
   flex-direction: row;
+  ${breakpoints.large} {
+    padding-top: 0.5vh;
+  }
 `;
 
 export const Position = styled.h3`
@@ -64,6 +91,14 @@ export const Position = styled.h3`
   line-height: 1.71vh;
   color: #fff;
   padding-right: 0.83vw;
+  ${breakpoints.medium} {
+    font-size: 1.5vw;
+    line-height: 2vh;
+  }
+  ${breakpoints.small} {
+    font-size: 1.8vw;
+    line-height: 2.2vh;
+  }
 `;
 
 export const Birthday = styled.h3`
@@ -71,6 +106,14 @@ export const Birthday = styled.h3`
   font-size: 0.73vw;
   line-height: 1.71vh;
   color: #fff;
+  ${breakpoints.medium} {
+    font-size: 1.5vw;
+    line-height: 2vh;
+  }
+  ${breakpoints.small} {
+    font-size: 1.8vw;
+    line-height: 2.2vh;
+  }
 `;
 
 export const RightBox = styled.div<StyledProps>`
@@ -80,4 +123,12 @@ export const RightBox = styled.div<StyledProps>`
   background-size: auto 4.81vh;
   background-repeat: no-repeat;
   background-position: center;
+  ${breakpoints.medium} {
+    width: 10vw;
+    background-size: auto 4vh;
+  }
+  ${breakpoints.small} {
+    width: 12vw;
+    background-size: auto 3.5vh;
+  }
 `;
