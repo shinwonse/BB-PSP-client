@@ -62,7 +62,7 @@ export const ModalBlock = styled.div`
     height: 70vh;
   }
   ${breakpoints.small} {
-    width: 70vw;
+    width: 60vw;
     height: 70vh;
   }
 `;
@@ -72,7 +72,7 @@ export const Contents = styled.div`
   flex-direction: column;
   align-items: center;
   ${breakpoints.large} {
-    padding-top: 4.9vh;
+    padding-top: 3.5vh;
   }
   ${breakpoints.medium} {
     padding-top: 3vh;
@@ -87,8 +87,7 @@ export const Title = styled.h2`
   color: #272727;
   ${breakpoints.large} {
     font-size: 1.15vw;
-    line-height: 2.69vh;
-    padding-bottom: 5.28vh;
+    padding-bottom: 3vh;
   }
   ${breakpoints.medium} {
     font-size: 2vw;
@@ -108,16 +107,21 @@ export const Grid = styled.div`
   ${breakpoints.large} {
     grid-template-columns: repeat(2, 1fr);
     height: 62.04vh;
-    width: 32.81vw;
+    width: 35vw;
     column-gap: 2.6vw;
     row-gap: 3.7vh;
   }
   ${breakpoints.medium} {
     grid-template-columns: repeat(1, 1fr);
-    height: 61vh;
-    width: 40vw;
-    column-gap: 2.6vw;
-    row-gap: 3.7vh;
+    height: 60vh;
+    width: 28vw;
+    row-gap: 1vh;
+  }
+  ${breakpoints.small} {
+    grid-template-columns: repeat(1, 1fr);
+    height: 60vh;
+    width: 38vw;
+    row-gap: 1vh;
   }
   overflow: scroll;
 `;
