@@ -2,7 +2,7 @@ import ResultButton from '@button/ResultButton';
 import styled from '@emotion/styled';
 import { fetchPitcher, usePitcher } from '@hooks/api/usePitcher';
 import BlackLayout from '@layout/black/BlackLayout';
-import ModalFrame from '@modal/ModalFrame';
+import PitcherModal from '@modal/PitcherModal';
 import Profile from '@PlayerInfo/Profile';
 import PitcherTable from '@PlayerInfo/StatTable/PitcherTable';
 import { breakpoints } from '@styles/media';
@@ -104,6 +104,7 @@ const ReplacementPlayerButton = styled.button`
 const Player = () => {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
+  const position = 'pitcher';
   const name = router.query?.player as string;
   const birth = router.query?.birth as string;
   const { isLoading, error, data } = usePitcher(2021, name, birth);
@@ -121,12 +122,12 @@ const Player = () => {
       </TopContentsContainer>
       <BottomContentsContainer>
         <PitcherTable {...pitcher_stat} />
-        <ResultButton name={name} birth={birth} />
+        <ResultButton position={position} name={name} birth={birth} />
         <ReplacementPlayerButton onClick={openModal}>
           replacement player
         </ReplacementPlayerButton>
       </BottomContentsContainer>
-      {showModal ? <ModalFrame setShowModal={setShowModal} /> : null}
+      {showModal ? <PitcherModal setShowModal={setShowModal} /> : null}
     </Wrapper>
   );
 };

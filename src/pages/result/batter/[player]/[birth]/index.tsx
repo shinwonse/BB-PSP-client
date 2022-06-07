@@ -2,7 +2,7 @@ import ResultButton from '@button/ResultButton';
 import styled from '@emotion/styled';
 import { fetchBatter, useBatter } from '@hooks/api/useBatter';
 import BlackLayout from '@layout/black/BlackLayout';
-import ModalFrame from '@modal/ModalFrame';
+import BatterModal from '@modal/BatterModal';
 import Profile from '@PlayerInfo/Profile';
 import BatterTable from '@PlayerInfo/StatTable/BatterTable';
 import { breakpoints } from '@styles/media';
@@ -104,6 +104,7 @@ const ReplacementPlayerButton = styled.button`
 const Player = () => {
   const [showModal, setShowModal] = useState(false);
   const router = useRouter();
+  const position = 'batter';
   const name = router.query?.player as string;
   const birth = router.query?.birth as string;
   const { isLoading, error, data } = useBatter(2021, name, birth);
@@ -121,12 +122,12 @@ const Player = () => {
       </TopContentsContainer>
       <BottomContentsContainer>
         <BatterTable {...batter_stat} />
-        <ResultButton name={name} birth={birth} />
+        <ResultButton position={position} name={name} birth={birth} />
         <ReplacementPlayerButton onClick={openModal}>
           replacement player
         </ReplacementPlayerButton>
       </BottomContentsContainer>
-      {showModal ? <ModalFrame setShowModal={setShowModal} /> : null}
+      {showModal ? <BatterModal setShowModal={setShowModal} /> : null}
     </Wrapper>
   );
 };

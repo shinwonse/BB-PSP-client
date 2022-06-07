@@ -103,6 +103,20 @@ export interface IBatterStatProps {
   _SLG: number;
 }
 
+export interface IBatterPredictedStatProps {
+  pg: number;
+  pavg: number;
+  ppa: number;
+  pab: number;
+  pr: number;
+  ph: number;
+  phr: number;
+  prbi: number;
+  pbb: number;
+  pslg: number;
+  pobp: number;
+}
+
 export interface IPitcherStatProps {
   _G: number;
   _IP: number;
@@ -113,6 +127,18 @@ export interface IPitcherStatProps {
   _HLD: number;
   _SV: number;
   _WHIP: number;
+}
+
+export interface IPitcherPredictedStatProps {
+  pip: number;
+  pera: number;
+  pwhip: number;
+  pw: number;
+  pl: number;
+  pso: number;
+  phld: number;
+  ps: number;
+  pg: number;
 }
 
 export interface IPlayer {
