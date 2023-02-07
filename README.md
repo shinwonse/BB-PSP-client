@@ -1,20 +1,24 @@
+## Notice
+현재 리마스터 작업이 진행중입니다. dev 브랜치에서 확인하실 수 있습니다.
+
+<div align="center">
+  
+![Group 239](https://user-images.githubusercontent.com/62709718/173835558-a5a2e36b-c68e-4cc0-bf48-c98d49e8ab71.png)
+  
+</div>
+
 # ⚾️ BB: PSP (Client)
 
 BB: PSP의 Client Repository 입니다.
 
 # 📃 프로젝트 소개
 
-머신러닝을 활용하여 KBO 선수들의 성적을 예측하고, 각 팀에 필요한 대체 선수들을 제안합니다.
+기록의 스포츠라고 불리는 야구는 일반인들도 여러 기록 사이트를 통해 자신들이 원하는 데이터를 찾아볼 수 있어 예전처럼 단순히 야구 자체만 보는 팬들보다는 데이터를 통해 야구를 더 깊게 이해하고 있는 팬들이 많아졌다. 또한 프로 구단에서도 선수의 이름값보다는 데이터를 이용한 구단 운영을 하는 것이 이제는 대세가 되었다. 이러한 경향 속에서 '예측'이라는 키워드는 팬들과 구단에게 꽤나 흥미를 일으키게 할 것이 분명해 보인다. 
 
-# 📚 프론트 기술 스택
-<div>
-  <img src="https://img.shields.io/badge/TypeScript-4.5.4-3178C6?style=flat&logo=typescript" />
-  <img src="https://img.shields.io/badge/React-17.0.2-61DAFB?style=flat&logo=react" />
-  <img src="https://img.shields.io/badge/Next.js-12.0.8-000000?style=flat&logo=Next.js" />
-  <img src="https://img.shields.io/badge/Eslint-8.6.0-4B32C3?style=flat&logo=eslint" />
-  <img src="https://img.shields.io/badge/Prettier-2.5.1-F7B93E?style=flat&logo=prettier" />
-  <img src="https://img.shields.io/badge/styled_components-5.3.3-DB7093?style=flat&logo=styled-components" />
-  <img src="https://img.shields.io/badge/Recoil-0.5.2-1877F2?style=flat&logo=Facebook" />
-  <img src="https://img.shields.io/badge/react_query-6.2.3-FF4B4B?style=flat&logo=react-query" />
-  <img src="https://img.shields.io/badge/framer_motion-6.2.3-0055FF?style=flat&logo=Framer" />
-</div>
+ 처음에 생각했던 '딥러닝을 활용한 프로야구 선수 성적 예측' 이라는 큰 주제에서 단순히 선수들의 성적을 예측해서 테이블로 보여주는 것을 아닌 의미 있는 결과를 낼 수 있는 주제가 있을까라는 고민을 가장 많이 하였다. 구단 입장에서는 정말 우리 팀에 필요한 선수가 누구이고 그 선수는 내년에 어떤 성적을 낼 것인지 알 수 있다면 선수 영입에 도움이 될 것이고, 어렵게만 느껴지는 야구 데이터를 쉽게 풀어내어 일반인들에게도 제공할 수 있다면 조금은 침체된 야구 흥행에 도움이 될 것이다.
+
+[최종보고서](https://shinwonse.notion.site/26b6e1597c6f43c394f78f14420f860c)
+
+# 📚 기술 스택
+
+![BBPSP_Architecture - Frame 3](https://user-images.githubusercontent.com/62709718/173835399-7fd2feab-4753-4de9-9083-a6bfda7f9184.jpg)
